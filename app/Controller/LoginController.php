@@ -1,6 +1,8 @@
 <?php
 class LoginController extends AppController {
-
+	
+	public $uses = array("User");
+	
 	public function index() {
 			
 	}
@@ -9,8 +11,8 @@ class LoginController extends AppController {
 	
 		$email = $_POST["email"];
 		$password = $_POST["password"];
-		
-		if($email == "chen" && $password == "yan") {
+		$user = $this->User->findByEmailAndPassword($email, $password);
+		if(!empty($user)) {
 			$this->redirect("/store/index");
 		} else {
 			$this->view = "index";
