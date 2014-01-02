@@ -3,6 +3,16 @@ class StoreController extends AppController {
 	
 	public $layout = 'storage';
 	
+	public function beforeFilter(){
+		$user_email = $this->Session->read("user_email");
+		if(empty($user_email)){
+// 			$this->view = "index";
+// 			$this->viewPath = "Login";	
+// 			$this->layout = false;	
+			$this->redirect("/login/index");
+		}
+	}
+	
 	public function index() {
 		
 	}

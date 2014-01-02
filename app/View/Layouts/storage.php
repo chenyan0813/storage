@@ -28,7 +28,7 @@
                <li class="bt" ><a href="/store/help/" >帮助</a></li>
                <li class="bt" ><a href="/store/account/" >账户</a></li>
                <li class="bt" ><a href="/store/sys/" >设置</a></li>
-               <li><a href="/login/logout/" > bin.shen / 退出登录</a></li>
+               <li><a href="/login/logout/" > <?php echo $this->Session->read("user_email");?> / 退出登录</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
