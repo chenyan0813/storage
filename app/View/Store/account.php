@@ -2,9 +2,9 @@
   <div class="panel_block" >
     <h2>修改密码</h2>
    
-    <div class="alert" >password</div>
+    <div class="alert" ><?php if(!empty($message)){echo $message;}?></div>
    
-      <form method="POST" >
+      <form action="/store/change_pw" method="POST" >
       <ul>
       <li>
         原密码  <input placeholder="输入原密码"  type="password" class="medium"  name="oldpassword" value="" required />
@@ -25,7 +25,7 @@
 <div class="span6">
 <div class="panel_block" >
   <h2>修改登录email</h2>
-<form method="POST" >
+<form action="/store/change_email" method="POST" >
   <ul>
     <li>
       <input placeholder="Email"  type="email" class="medium"  name="email" value="email" />

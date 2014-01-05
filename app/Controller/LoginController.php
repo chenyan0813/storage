@@ -11,18 +11,20 @@ class LoginController extends AppController {
 	
 		$email = $_POST["email"];
 		$password = $_POST["password"];
-		//$user = $this->User->findByEmailAndPassword($email, $password);
-		$user = $this->User->find("first", array("conditions"=>array("email"=>$email,"password"=>$password)));
+		$user = $this->User->findByEmailAndPassword($email, $password);
 		if(!empty($user)) {
-			$this->Session->write('user_email', $email);
+			$this->Session->write('login.email', $email);
 			$this->redirect("/store/index");
+// 			$this->view = "index";
+// 			$this->viewPath = "Store";
+// 			$this->layout = "storage";
 		} else {
 			$this->view = "index";
 		}
 	}
 	
 	public function logout() {
-		$this->Session->delete('user_email');
+		$this->Session->delete('login.email');
 		$this->view="index";
 	}
 }
