@@ -11,12 +11,19 @@
    </Row>
 
   <Row>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">pid</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">pname</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">unit</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">category</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">kuwei</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">balance</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">alert_level</Data></Cell>
+  <?php 
+  foreach ($goods as $good){
+
+  ?>
+    <Cell ss:StyleID="s62"><Data ss:Type="String"><?php echo $good["Good"]["id"];?></Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String"><?php echo $good["Good"]["name"];?></Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String"><?php echo $good["Good"]["unit"];?></Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String"><?php echo $good["Good"]["class"];?></Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String"><?php echo $good["Good"]["location"];?></Data></Cell>
+  <Cell ss:StyleID="s62"><Data ss:Type="Number"><?php //echo $good["Good"]["banlance"];?></Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number"><?php echo $good["Good"]["alert"];?></Data></Cell>
+    <?php
+    }
+    ?>
    </Row>
 </Table>

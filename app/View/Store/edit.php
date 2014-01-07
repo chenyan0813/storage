@@ -46,7 +46,9 @@
   <ul><li>
    <div><input type="hidden" name="id" value="id" required >
    <input type="hidden" name="action" value="del" >
-现有库存      balance/ unit <br />
+   
+现有库存     <br />
+
 当库存为 0 时，可以将次商品从数据库中删除。 <br />
    $val['balance'] == 0 ;
 <input type="submit" class="submit-button" value="删除商品" >

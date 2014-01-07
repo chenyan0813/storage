@@ -1,9 +1,10 @@
-<div class="panel_block" ><form class="padding" method="POST" >
-  <input  placeholder="分类"  type="text" name="category" list="category_item" value="category" autocomplete="off" />
+<div class="panel_block" >
+<form class="padding" method="POST" action="/store/calculate" >
+  <input  placeholder="分类"  type="text" name="category" list="category_item" value="" autocomplete="off" />
 &nbsp;
-日期  <input type="date" name="sdate" class="input-medium" value="2013-01-01"/>
+日期  <input type="date" name="sdate" class="input-medium" value=""/>
 -
-<input type="date" name="edate" class="input-medium" value="2013-01-01" />  <input type="submit" value="搜索" class="btn btn-primary"/>  
+<input type="date" name="edate" class="input-medium" value="" />  <input type="submit" value="搜索" class="btn btn-primary"/>  
 &nbsp;
  <!-- <a href="/stock/export/" >导出EXCEL</a> -->
 </form>
@@ -29,19 +30,22 @@
     </th>
   </tr></thead>
   <tbody>
-  
+  <?php 
+   foreach ($goods as $good) {
+   	?>   
   <tr class="odd">
-    <td>pid/ pname/ size</td>
-    <td>unit</td>
-    <td>category</td>
-    <td>kuwei</td>
+    <td><?php echo $good["Good"]["name"] . " / " . $good["Good"]["code"] . " / " . $good["Good"]["category"];?></td>
+    <td><?php echo $good["Good"]["unit"];?></td>
+    <td><?php echo $good["Good"]["class"];?></td>
+    <td><?php echo $good["Good"]["location"];?></td>
     <td>in</td>
     <td>out</td>
-    <td>alert_level</td>
+    <td><?php echo $good["Good"]["alert"];?></td>
     <td>
       <a href="/store/history/view/3" >明细</a>
     </td>
   </tr>
+  <?php }?>
 </tbody>
 </table>
 </div>

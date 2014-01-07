@@ -1,11 +1,12 @@
 <div class="panel_block" >
   <div class="submenu" >
-<form class="padding" method="POST" >
-<input  placeholder="分类"  type="text" name="category" list="category_item" value="category" autocomplete="off" />
+<form class="padding" method="POST" action="/store/search_history/" >
+<input  placeholder="分类"  type="text" name="category" list="category_item" value="" autocomplete="off" />
 &nbsp;
-日期  <input type="date" name="sdate" class="input-medium" value="2013-12-29"/>
+日期  <input type="date" name="sdate" class="input-medium" value=""/>
 -
-<input type="date" name="edate" class="input-medium" value="2013-12-29" /> <input type="submit" value="搜索" class="btn btn-primary"/>  
+<input type="date" name="edate" class="input-medium" value=""/>
+<input type="submit" value="搜索" class="btn btn-primary"/>  
 &nbsp;
 <a href="/store/export_history/" class="btn" >导出EXCEL</a>
  </form>
@@ -23,24 +24,30 @@
     <th>品号 / 品名 / 型号</th> 
     <th></th>
     <th>数量</th>
-    <th>结余</th> 
+    <th>单位</th> 
     <th>分类</th>
     <th>操作员</th>
     <th>备注</th>
+    <th width="50">操作 </th>
   </tr>
 </thead>
-<tbody>
 
+<tbody>
+  <?php 
+  foreach ($goods as $good){
+  ?>		
   <tr class="odd">
-    <td>datetime</td>
-    <td>pid / pname / size</td> 
-    <td>action_label</td>
-    <td class="red">num</td>
-    <td>balance (unit) </td>
-    <td>category</td>
-    <td>doer</td>
-    <td><a title="remark" >备注</a></td>
+    <td><?php echo $good["Good"]["date"];?></td>
+    <td><?php echo $good["Good"]["name"] . " / " . $good["Good"]["code"] . " / " . $good["Good"]["category"];?></td> 
+    <td><?php echo $good["Good"]["alert"];?></td>
+    <td class="red"><?php echo $good["Good"]["amount"];?></td>
+    <td><?php echo $good["Good"]["unit"];?> </td>
+    <td><?php echo $good["Good"]["class"];?></td>
+    <td><?php echo $good["Good"]["user_id"];?></td>
+    <td><a title="remark" ><?php echo $good["Good"]["remark"];?></a></td>  
+    <td> <a href="/store/edit/1"  >编辑</a></td>
   </tr>
+  <?php }?>
 </tbody>
 </table>
 <div class="pagination" ></div>

@@ -1,7 +1,7 @@
 <?php
 class StoreController extends AppController {
 	
-	public $uses = array("User");
+	public $uses = array("User","Good");
 	
 	public $layout = 'storage';
 	
@@ -20,16 +20,116 @@ class StoreController extends AppController {
 	}
 	
 	public function stock() {
+		$group = array("name","code","category");
+		$fields = array('code','name','category','class','location','SUM(amount) as balance','alert');
+		$result = $this->Good->find("all",array("group"=>$group,"fields"=>$fields));
+		//debug($result);
+		
+		$this->set("goods",$result);
+	}
 	
+	public function edit() {
+		$result = $this->Good->find("all");
+		
+		$this->set("goods",$result);
+		
+	}
+	
+	public function export() {
+		
+		
+		$result = $this->Good->find("all");
+		
+		$this->set("goods",$result);
 	}
 	
 	public function history() {
+		
+		$result = $this->Good->find("all");
+		
+		$this->set("goods",$result);
+	}
 	
+	public function history_view($name,$code,$category) {
+		$this->view = "history";
+		$conditions = array();
+		$conditions["name"] = $name;
+		$conditions["code"] = $code;
+		$conditions["category"] = $category;
+		$result = $this->Good->find("all", array("conditions" => $conditions));
+		$this->set("goods",$result);
+		
+	}
+	
+	public function search_history() {
+		
+		//$this->redirect("/store/history");
+		$this->view = "history";
+		
+		$category = $_POST["category"];
+		$sdate = $_POST["sdate"];
+		$edate = $_POST["edate"];
+				
+		$conditions = array();
+		if(!empty($category)) {
+			$conditions["class"] = $category;
+		}
+		if(!empty($sdate)) {
+			$conditions["date >="] = $sdate;
+		}
+		if(!empty($edate)) {
+			$conditions["date <="] = $edate;
+		}
+		$result = $this->Good->find("all", array("conditions" => $conditions));
+		
+//		$result = $this->Good->find("all", array("conditions" => array("class" => $category, "date" => $sdate, "date" => $edate)));	
+
+//		$result = $this->Good->query("select * from goods Good where class = '$category' and date >= '$sdate' and date <= '$edate'");
+		
+		//$sql = "select * from goods Good where class = '$category' and date >= '$sdate' and date <= '$edate'";
+		
+// 		$sql = " select * from goods Good ";
+// 		$sql = $sql + " where 1 = 1 ";
+// 		if(!empty($category)) {
+// 			$sql = $sql + " and class = '$category' ";
+// 		}
+// 		if(!empty($sdate)) {
+// 			$sql = $sql + " and date >= '$sdate' ";
+// 		}
+// 		if(!empty($edate)) {
+// 			$sql = $sql + " and date <= '$edate' ";
+// 		}
+// 		$result = $this->Good->query($sql);
+		
+		$this->set("goods",$result);
+		
 	}
 	
 	public function calculate() {
-	
+		if($this->request->is("POST")){
+			$category = $_POST["category"];
+			$sdate = $_POST["sdate"];
+			$edate = $_POST["edate"];
+			
+			$conditions = array();
+			if(!empty($category)) {
+				$conditions["class"] = $category;
+			}
+			if(!empty($sdate)) {
+				$conditions["date >="] = $sdate;
+			}
+			if(!empty($edate)) {
+				$conditions["date <="] = $edate;
+			}
+			$result = $this->Good->find("all", array("conditions" => $conditions));
+		}
+		else{
+			$result = $this->Good->find("all");
+		}
+		$this->set("goods",$result);
 	}
+	
+
 	
 	public function help() {
 	

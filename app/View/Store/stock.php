@@ -10,35 +10,27 @@
     <th>库位</th>
     <th>库存</th>
     <th>警戒库存</th>
-    <th width="80" >
-      操作
-    </th>
+    <th width="50">操作 </th>
   </tr>
 </thead>
 
 <tbody>
+<?php 
+   foreach ($goods as $good) {
+   	?>   
   <tr class="odd red">
-    <td>pid / pname / size</td>
-    <td>category</td>
-    <td>kuwei</td>
-    <td>balance (警戒!) unit </td>
-    <td>alert_level</td>
+    <td><?php echo $good["Good"]["name"] . " / " . $good["Good"]["code"] . " / " . $good["Good"]["category"];?></td>
+    <td><?php echo $good["Good"]["class"];?></td>
+    <td><?php echo $good["Good"]["location"];?></td>
+    <td><?php echo $good[0]["balance"];?> </td>
+    <td><?php echo $good["Good"]["alert"];?></td>
     <td>
-      <a href="/store/history_view/1" >明细</a>
-      <a href="/store/edit/1"  >编辑</a>
+      <a href="/store/history_view/<?php echo $good["Good"]["name"];?>/<?php echo $good["Good"]["code"]?>/<?php echo $good["Good"]["category"]?>" >明细</a>
+      
     </td>
   </tr>
-  <tr class="odd">
-    <td>pid / pname / size</td>
-    <td>category</td>
-    <td>kuwei</td>
-    <td>balance unit</td>
-    <td>alert_level</td>
-    <td>
-      <a href="/store/history_view/1" >明细</a>
-      <a href="/store/edit/1"  >编辑</a>
-    </td>
-  </tr>
+  <?php } ?>
+  
 </tbody>
 </table>
 </div>
