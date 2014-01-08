@@ -5,32 +5,32 @@
   <form class="form-horizontal" method="POST" >
     <div class="control-group">
       <label class="control-label" >品号</label>
-      <div class="controls"><input type="hidden" name="id" value="id" required > <input type="text" name="pid" value="pid" required ></div>
+      <div class="controls"><input type="hidden" name="id" value="<?php echo $good["Good"]["id"]?>" required > <input type="text" name="code" value="<?php echo $good["Good"]["code"]?>" required ></div>
     </div>
     <div class="control-group">
       <label class="control-label" >品名</label>
-      <div class="controls"><input type="text" name="pname" value="pname"  required ></div>
+      <div class="controls"><input type="text" name="name" value="<?php echo $good["Good"]["name"]?>"  required ></div>
     </div>
     <div class="control-group">
       <label class="control-label" >型号</label>
-      <div class="controls"><input type="text" name="size" value="size" >  </div>
+      <div class="controls"><input type="text" name="category" value="<?php echo $good["Good"]["category"]?>" >  </div>
     </div>
     <div class="control-group">
       <label class="control-label" >分类</label>
-      <div class="controls"><input type="text" name="category" value="category" >    </div>
+      <div class="controls"><input type="text" name="class" value="<?php echo $good["Good"]["class"]?>" >    </div>
     </div> 
     <div class="control-group">
       <label class="control-label" >警戒库存</label>
       <div class="controls">
-      <input type="text" name="alert_level" value="alert_level" >  </div> 
+      <input type="text" name="alert" value="<?php echo $good["Good"]["alert"]?>" >  </div> 
    </div>  
     <div class="control-group">    
       <label class="control-label" >库位</label>
-      <div class="controls"><input type="text" name="kuwei" value="kuwei"  required  >  </div> 
+      <div class="controls"><input type="text" name="location" value="<?php echo $good["Good"]["location"]?>"  required  >  </div> 
    </div>  
     <div class="control-group">    
       <label class="control-label" >单位</label>
-      <div class="controls"><input type="text" name="unit" value="unit"  required  >  </div> 
+      <div class="controls"><input type="text" name="unit" value="<?php echo $good["Good"]["unit"]?>"  required  >  </div> 
    </div>  
     <div class="control-group">
      <div class="controls"><input type="submit" class="btn btn-primary" value="确认修改" >   </div> 

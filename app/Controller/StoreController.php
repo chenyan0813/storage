@@ -28,20 +28,14 @@ class StoreController extends AppController {
 		$this->set("goods",$result);
 	}
 	
-	public function edit() {
-		$result = $this->Good->find("all");
-		
-		$this->set("goods",$result);
+	public function edit($id) {
+		$conditions = array();
+		$conditions["id"] = $id;
+		$result = $this->Good->find("first",array("conditions" => $conditions));	
+		$this->set("good",$result);
 		
 	}
 	
-	public function export() {
-		
-		
-		$result = $this->Good->find("all");
-		
-		$this->set("goods",$result);
-	}
 	
 	public function history() {
 		

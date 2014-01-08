@@ -45,7 +45,7 @@
     <td><?php echo $good["Good"]["class"];?></td>
     <td><?php echo $good["Good"]["user_id"];?></td>
     <td><a title="remark" ><?php echo $good["Good"]["remark"];?></a></td>  
-    <td> <a href="/store/edit/1"  >编辑</a></td>
+    <td> <a href="/store/edit/<?php echo $good["Good"]["id"];?>"  >编辑</a></td>
   </tr>
   <?php }?>
 </tbody>
